@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp2.Glasses;
 
 namespace WpfApp2
 {
@@ -20,9 +21,29 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Glasses.PersonInfo Player = new Glasses.PersonInfo("Student", 100, 10, 1, 0, 0, 5);
         public MainWindow()
         {
             InitializeComponent();
+            //Повышаем уровень персонажа и обновляем данные на UI
+            UserInfoPlayer();
+        }
+        ///<summary> Повышение уровня и обновляемых данных
+        public void UserInfoPlayer()
+        {
+            if (Player.Glasses > 100 * Player.Level)
+            {
+                Player.Level++;
+                Player.Glasses = 0;
+                Player.Health += 100;
+                Player.Damage++;
+                Player.Armor++;
+            }
+            playerHealth.Content = "Жизненные показатели: " + Player.Health;
+            playerArmor.Content = "Броня: " + Player.Armor;
+            playerLevel.Content = "Уровень: " + Player.Level;
+            playerGlasses.Content = "Опыт: " + Player.Glasses;
+            playerMoney.Content = "Монеты: " + Player.Money;
         }
     }
 }
