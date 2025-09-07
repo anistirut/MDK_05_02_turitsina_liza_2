@@ -73,7 +73,7 @@
                 <Image
                     x:Name="emptyImage"
                     Margin="10,10,10.2,185.4"
-                    Source="/Image/knight.png"/>
+                    Source="/Image/monster.png"/>
                 <Label
                     Content="Основные характеристики персонажа:"
                     HorizontalAlignment="Left"
