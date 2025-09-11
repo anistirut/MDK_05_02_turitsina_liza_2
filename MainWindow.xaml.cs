@@ -25,6 +25,7 @@ namespace WpfApp2
         public Glasses.PersonInfo Player = new Glasses.PersonInfo("Student", 100, 10, 1, 0, 0, 5);
         public List<PersonInfo> Enemys = new List<PersonInfo>();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public Glasses.PersonInfo Enemy;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,12 +35,22 @@ namespace WpfApp2
             Enemys.Add(new PersonInfo("Средний монстр", 120, 15, 1, 0, 30, 15));
             Enemys.Add(new PersonInfo("Большой монстр", 150, 20, 1, 0, 40, 20));
 
-            dispatcherTimer.Tick += AtackPlayer;
-            dispatcherTimer.Interval = new System.TimeSpan(0, 0, 10);
+            dispatcherTimer.Tick += AttackPlayer;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
 
+            SelectEnemy();
+
         }
-        ///<summary> Повышение уровня и обновляемых данных
+        private void AttackPlayer(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public void SelectEnemy()
+        {
+            int Id = new Random().Next(0, Enemys.Count);
+        }
         public void UserInfoPlayer()
         {
             if (Player.Glasses > 100 * Player.Level)
