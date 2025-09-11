@@ -31,9 +31,9 @@ namespace WpfApp2
             InitializeComponent();
             UserInfoPlayer();
 
-            Enemys.Add(new PersonInfo("Маленький монстр", 100, 10, 1, 0, 15, 10));
-            Enemys.Add(new PersonInfo("Средний монстр", 120, 15, 1, 0, 30, 15));
-            Enemys.Add(new PersonInfo("Большой монстр", 150, 20, 1, 0, 40, 20));
+            Enemys.Add(new PersonInfo("Маленький монстр", 100, 10, 1, 10, 15, 10));
+            Enemys.Add(new PersonInfo("Средний монстр", 120, 15, 1, 15, 30, 15));
+            Enemys.Add(new PersonInfo("Большой монстр", 150, 20, 1, 20, 40, 20));
 
             dispatcherTimer.Tick += AttackPlayer;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
@@ -80,7 +80,19 @@ namespace WpfApp2
 
         private void AttackEnemy(object sender, MouseButtonEventArgs e)
         {
-
+            Enemy.Health -= Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
+            if(Enemy.Health <= 0)
+            {
+                Player.Glasses += Enemy.Glasses;
+                Player.Money += Enemy.Money;
+                UserInfoPlayer();
+                SelectEnemy();
+            }
+            else
+            {
+                enemyHealth.Content = "Жизненые показатели: " + Enemy.Health;
+                enemyArmor.Content = "Броня: " + Enemy.Armor;
+            }
         }
     }
 }
