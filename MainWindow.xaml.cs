@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using WpfApp2.Glasses;
+using WpfApp2.Сlasses;
 
 namespace WpfApp2
 {
@@ -22,10 +22,10 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Glasses.PersonInfo Player = new Glasses.PersonInfo("Student", 100, 10, 1, 0, 0, 5);
+        public Сlasses.PersonInfo Player = new Сlasses.PersonInfo("Student", 100, 10, 1, 0, 0, 5);
         public List<PersonInfo> Enemys = new List<PersonInfo>();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        public Glasses.PersonInfo Enemy;
+        public Сlasses.PersonInfo Enemy;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,12 +44,22 @@ namespace WpfApp2
         }
         private void AttackPlayer(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Player.Health -= Convert.ToInt32(Enemy.Damage * 100f / (100f - Player.Armor));
+            UserInfoPlayer();
         }
         
         public void SelectEnemy()
         {
             int Id = new Random().Next(0, Enemys.Count);
+            Enemy = new PersonInfo(
+                Enemys[Id].Name,
+                Enemys[Id].Health,
+                Enemys[Id].Armor,
+                Enemys[Id].Level,
+                Enemys[Id].Glasses,
+                Enemys[Id].Money,
+                Enemys[Id].Damage
+                );
         }
         public void UserInfoPlayer()
         {
