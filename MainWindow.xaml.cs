@@ -93,6 +93,11 @@ namespace WpfApp2
                 enemyHealth.Content = "Жизненые показатели: " + Enemy.Health;
                 enemyArmor.Content = "Броня: " + Enemy.Armor;
             }
+            //2 вариант
+            // 5% шансом игрок будет похищать здоровье врага, которое снес ему при ударе
+            int probability = new Random().Next(0, 100);
+            if (probability > 5) Player.Health += Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
+            
         }
     }
 }

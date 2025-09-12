@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp2.Сlasses
 {
-    internal class PersonInfo
+    public class PersonInfo
     {
         /// <summary> Наименование
         public string Name { get; set; }
