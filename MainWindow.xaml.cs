@@ -84,7 +84,9 @@ namespace WpfApp2
             if(Enemy.Health <= 0)
             {
                 Player.Glasses += Enemy.Glasses;
-                Player.Money += Enemy.Money;
+
+                int rndm = new Random().Next(0, 20);
+                Player.Money += Enemy.Money + (Enemy.Money * rndm/100);
                 UserInfoPlayer();
                 SelectEnemy();
             }
@@ -98,6 +100,7 @@ namespace WpfApp2
             int probability = new Random().Next(0, 100);
             if (probability > 5) Player.Health += Convert.ToInt32(Player.Damage * 100f / (100f - Enemy.Armor));
             
+
         }
     }
 }
